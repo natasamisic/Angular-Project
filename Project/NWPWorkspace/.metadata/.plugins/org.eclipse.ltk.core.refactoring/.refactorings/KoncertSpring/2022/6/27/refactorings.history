@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 8 elements from project &apos;KoncertSpring&apos;&#x0D;&#x0A;- Original project: &apos;KoncertSpring&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     korisnik&#x0D;&#x0A;     radnik&#x0D;&#x0A;     styles&#x0D;&#x0A;     index.jsp&#x0D;&#x0A;     login.jsp&#x0D;&#x0A;     pocetna.jsp&#x0D;&#x0A;     prikazSvihKoncerata.jsp&#x0D;&#x0A;     register.jsp" description="Delete elements" element1="src/main/webapp/pocetna.jsp" element2="src/main/webapp/korisnik" element3="src/main/webapp/radnik" element4="src/main/webapp/styles" element5="src/main/webapp/login.jsp" element6="src/main/webapp/register.jsp" element7="src/main/webapp/index.jsp" element8="src/main/webapp/prikazSvihKoncerata.jsp" elements="0" flags="589830" id="org.eclipse.jdt.ui.delete" resources="8" stamp="1656264340336" subPackages="false" version="1.0"/>
+</session>

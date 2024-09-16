@@ -1,0 +1,18 @@
+<div style="margin: 15px;">
+    <input class="pretraga-input" type="text" placeholder=" Pretraži koncerte po izvođaču" name="searchBox"
+        (keyup)="search($event)" />
+</div>
+
+<div class="container">
+    <div class="col-md-2" style="margin-bottom: 20px;">
+        <label style="color: lightgrey;">Pretraži koncerte po žanru: </label><select class="form-control" name="zanr"
+            (change)="searchZanr($any($event.target).value)">
+            <option *ngFor="let z of zanrovi" [value]="z.naziv">{{z.naziv}}</option>
+        </select>
+    </div>
+    <div style="display: inline-block; flex-direction: row;">
+        <app-koncert-item class="col-md-3 mx-auto my-5" [koncert]="koncert" *ngFor="let koncert of koncerti">
+
+        </app-koncert-item>
+    </div>
+</div>

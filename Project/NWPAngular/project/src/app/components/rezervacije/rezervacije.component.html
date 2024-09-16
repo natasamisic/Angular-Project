@@ -1,0 +1,25 @@
+<table class="table" style="background-color: #ccc8bc; text-align:center;">
+    <thead>
+      <tr>
+        <th scope="col">Izvodjac</th>
+        <th scope="col">Zanr</th>
+        <th scope="col">Adresa</th>
+        <th scope="col">Grad</th>
+        <th scope="col">Trajanje</th>
+        <th scope="col">Cena karte</th>
+        <th scope="col">Datum rezervacije</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let karta of karte">
+        <td>{{karta.koncert.izvodjac}}</td>
+        <td>{{karta.koncert.zanr.naziv}}</td>
+        <td>{{karta.koncert.adresa}}</td>
+        <td>{{karta.koncert.grad}}</td>
+        <td>{{karta.koncert.trajanje}} min</td>
+        <td>{{karta.koncert.cena}} din</td>
+        <td>{{karta.datumRezervacije | date: 'dd-MM-yyyy'}}</td>
+        <td><button class="btn btn-danger" (click)="otkaziRezervaciju(karta)">Otkaži rezervaciju</button></td>
+      </tr>
+    </tbody>
+  </table>

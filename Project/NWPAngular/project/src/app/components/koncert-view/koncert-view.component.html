@@ -1,0 +1,126 @@
+<section class="section about-section gray-bg" id="about" style="border-radius: 1em;">
+    <div class="container">
+        <div class="row align-items-center flex-row-reverse">
+            <div class="col-lg-6">
+                <div class="about-text go-to">
+                    <h3 class="dark-color">{{koncert.izvodjac}}</h3>
+                    <p>{{koncert.opis}}</p>
+                    <div class="row about-list">
+                        <div class="col-md-6">
+                            <div class="media">
+                                <label>Grad</label>
+                                <p>{{koncert.grad}}</p>
+                            </div>
+                            <div class="media">
+                                <label>Adresa</label>
+                                <p>{{koncert.adresa}}</p>
+                            </div>
+                            <div class="media">
+                                <label>Cena</label>
+                                <p>{{koncert.cena}} din</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="media">
+                                <label>Zanr</label>
+                                <p>{{koncert.zanr.naziv}}</p>
+                            </div>
+                            <div class="media">
+                                <label>Trajanje</label>
+                                <p>{{koncert.trajanje}} min</p>
+                            </div>
+                            <div class="media">
+                                <label>Datum izvodjenja</label>
+                                <p>{{koncert.datumIzvodjenja | date: 'dd-MM-yyyy'}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button *ngIf="checkLoginKorisnik()" class="btn btn-danger" style="margin-top: 20px;"
+                        (click)="rezervisiKartu()">Rezerviši kartu za koncert</button>
+                    <button *ngIf="checkLoginRadnik()" class="btn btn-primary"
+                        routerLink="/azuriraj-koncert/{{koncert.izvodjac}}" style="margin-top: 20px;">Izmeni podatke</button>
+                </div>
+                <button *ngIf="checkLoginKorisnik()" class="btn btn-outline-danger btn-lista"
+                    (click)="dodajUListuZelja()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                        <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                    </svg> Dodaj koncert u listu želja</button>
+            </div>
+            <div class="col-lg-6">
+                <div class="about-avatar">
+                    <img class="img-view" [src]="slika" title="" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <section style="margin-top: 30px;" *ngIf="checkLoginRadnik()">
+        <div style="margin: 0px 0px 20px 20px">
+            <h2>Broj rezervisanih karata za '{{koncert.izvodjac}}' je {{brojKarata}}</h2>
+        </div>
+        <table *ngIf="brojKarata > 0" class="table table-karte">
+            <thead>
+                <tr>
+                    <th scope="col">User</th>
+                    <th scope="col">Datum rezervacije</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let karta of karte">
+                    <td>{{karta.korisnik.username}}</td>
+                    <td>{{karta.datumRezervacije | date: 'dd-MM-yyyy'}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <button *ngIf="checkLoginRadnik()" class="btn btn-danger" (click)="obrisiKoncert()" style="margin-left: 80%; margin-top: 20px;">Obriši koncert</button>
+</section>
+
+<section style="background-color: #f7f6f6; border-radius: 1em;">
+    <div class="container my-5 py-5 text-dark">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-12 col-lg-10 col-xl-8">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h4 class="text-dark mb-0">Komentari</h4>
+                </div>
+                <div *ngIf="komentari.length == 0"><p>Nema komentara</p></div>
+                <div class="card mb-4" *ngFor="let komentar of komentari">
+                    <div class="card-body" style="border-radius: 1em;">
+                        <p>{{komentar.tekst}}</p>
+
+                        <div class="d-flex justify-content-between">
+                            <div class="d-flex flex-row align-items-center">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/User_font_awesome.svg/1200px-User_font_awesome.svg.png"
+                                    alt="avatar" width="25" height="25" />
+                                <p class="small mb-0 ms-2">{{komentar.korisnik.username}}</p>
+                            </div>
+                            <span class="obrisi-kom-span" *ngIf="proveriKomentarKorisnika(komentar)" (click)="obrisiKomentar(komentar.idKomentar)">Obriši komentar</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10 col-lg-8 col-xl-6" *ngIf="checkLoginKorisnik()">
+                <div class="card">
+                    <div class="card-body p-4">
+                        <div class="d-flex flex-start w-100">
+                            <div class="w-100">
+                                <h5>Dodaj komentar</h5>
+                                <form #komentarForm="ngForm" (ngSubmit)="addKomentar(komentarForm)">
+                                    <div class="form-outline">
+                                        <textarea class="form-control" rows="4" name="tekst" ngModel></textarea>
+                                    </div>
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <button type="submit" class="btn btn-outline-primary">
+                                            Objavi <i class="fas fa-long-arrow-alt-right ms-1"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

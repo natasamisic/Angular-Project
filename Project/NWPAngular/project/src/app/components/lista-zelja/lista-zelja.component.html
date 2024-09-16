@@ -1,0 +1,18 @@
+<table class="table" style="background-color: #ccc8bc; text-align:center;">
+    <thead>
+      <tr>
+        <th scope="col">Izvodjac</th>
+        <th scope="col">Zanr</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let koncert of lista">
+        <td>{{koncert.koncert.izvodjac}}</td>
+        <td>{{koncert.koncert.zanr.naziv}}</td>
+        <td><a routerLink="/prikaz-koncerta/{{koncert.koncert.izvodjac}}" class="btn btn-primary btn-position">Više o koncertu</a></td>
+        <td><button class="btn btn-danger" (click)="obrisiKoncertSaListe(koncert)">Obriši koncert sa liste želja</button></td>
+      </tr>
+    </tbody>
+  </table>

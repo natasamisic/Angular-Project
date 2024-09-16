@@ -1,0 +1,7 @@
+INDEX VERSION 1.131
+D:\PMF\RIS\RISProjekatWorkspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3044794408.index
+\KoncertSpring\src\main\java
+D:\PMF\RIS\RISProjekatWorkspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2020685516.index
+\KoncertSpring\src\main\java
+D:\PMF\RIS\RISProjekatWorkspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2958299273.index
+\KoncertSpring\src\main\java

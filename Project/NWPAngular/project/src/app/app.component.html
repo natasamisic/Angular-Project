@@ -1,0 +1,37 @@
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="navbar-header">
+      <a class="navbar-brand" routerLink="/sviKoncerti" routerLinkActive="active">SvetMuzike</a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link sr-only" routerLink="/svi-koncerti" routerLinkActive="active">Svi koncerti</a>
+        </li>
+        <li *ngIf="!checkLogin()" class="nav-item active">
+          <a class="nav-link sr-only" routerLink="/login" routerLinkActive="active">Login</a>
+        </li>
+        <li *ngIf="!checkLogin()" class="nav-item active">
+          <a class="nav-link sr-only" routerLink="/register" routerLinkActive="active">Register</a>
+        </li>
+        <li *ngIf="checkLoginRadnik()" class="nav-item active">
+          <a class="nav-link sr-only" routerLink="/dodaj-koncert" routerLinkActive="active">Dodaj koncert</a>
+        </li>
+        <li *ngIf="checkLoginKorisnik()" class="nav-item active">
+          <a class="nav-link sr-only" routerLink="/rezervacije-korisnika" routerLinkActive="active">Moje rezervacije</a>
+        </li>
+        <li *ngIf="checkLoginKorisnik()" class="nav-item active">
+          <a class="nav-link sr-only" routerLink="/lista-zelja" routerLinkActive="active">Moja lista želja</a>
+        </li>
+        <li *ngIf="checkLogin()" class="nav-item active">
+          <a class="nav-link sr-only" routerLink="/profil-korisnika" routerLinkActive="active">Moj profil</a>
+        </li>
+        <li *ngIf="checkLogin()" class="nav-item active">
+          <a class="nav-link sr-only" routerLink="" (click)="logout()" routerLinkActive="active">Odjavi me</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
